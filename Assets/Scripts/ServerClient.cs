@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tango;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
@@ -28,7 +29,7 @@ public class ServerClient : MonoBehaviour {
 	public GameObject networkUI;
 	public const short MSG_ID = 213;
 
-	public float movemendSpeedFactor = 100f;
+	public float movemendSpeedFactor = 10f;
 	
 	private Transform offset;
 	Vector3 scorePos = new Vector3(12,0,0);
@@ -75,9 +76,9 @@ public class ServerClient : MonoBehaviour {
 			Vector3 localPosition = DevicePosition.transform.localPosition;
 			
 			TransfromObject transfromObject = new TransfromObject();
-			transfromObject.x = (localPosition.x - offset.localPosition.x) * movemendSpeedFactor;
-			transfromObject.y = (localPosition.y - offset.localPosition.y) * movemendSpeedFactor;
-			transfromObject.z = (localPosition.z - offset.localPosition.z) * movemendSpeedFactor;
+			transfromObject.x = localPosition.x * movemendSpeedFactor;
+			transfromObject.y = localPosition.y * movemendSpeedFactor;
+			transfromObject.z = localPosition.z * movemendSpeedFactor;
 			
 			Quaternion localRoation = DevicePosition.transform.localRotation;
 			transfromObject.qx = localRoation.x;
